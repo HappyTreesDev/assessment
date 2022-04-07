@@ -60,15 +60,15 @@ challenge is to build a web application that allows users to create and manage g
 - Develop your solution following the same best practices you would follow for a business critical production-bound web application.
 - Please commit early and often. We are interested in more than just the final solution.
 - Feel free to add NPM dependencies as you see fit.
-- Please do not add additional system dependencies.
+- Please do not add additional system dependencies. (e.g. no databases, docker images, etc.)
 - You're welcome to use any resources available to you. This include Google, StackOverflow, etc. All we ask is that you develop your own solution and do not plagerize/copy pre-existing solutions.
 - Once finished, please submit your solution by either:
   - compressing it and sending it via email
-  - pushing it a private repository and sharing the link via email
+  - pushing it to a private repository and sharing the link via email
 
 ### Review Process
 
-During the review process we are considering serveral factors. The following is a non-exhaustive list included for your consideration:
+Upon submission, we will be reviewing several qualities of your application. The following is a non-exhaustive list included for your consideration:
 
 - general approach to problem solving and web application development
 - use of native modules
@@ -78,7 +78,7 @@ During the review process we are considering serveral factors. The following is 
 - application performance
 - commit frequency and consistency
 - simplicity and flexibility
-- testability and text coverage
+- testability and test coverage
 
 ---
 
