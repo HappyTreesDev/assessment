@@ -1,13 +1,19 @@
-import { Component } from 'react';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 interface ButtonProps {
-	title: string,
+    title: string,
 }
 
 export default function Button({ title }: ButtonProps) {
-	return (
-		<button>
-			{title}
-		</button>
-	);
+    const router = useRouter();
+    const handleClick = () => {
+        router.push('/create-goal')
+    }
+
+    return (
+        <button onClick={handleClick}>
+            {title}
+        </button>
+    );
 }
