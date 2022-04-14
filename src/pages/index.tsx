@@ -1,28 +1,31 @@
 import Head from 'next/head'
 import React from 'react'
 import api from '../api'
-import Button from '../components/button'
+import AddGoalButton from '../components/AddGoalButton'
+import GoalList from '../components/GoalList'
+import Introduction from '../components/Introduction'
+import styles from './index.module.css';
 
 const Home: React.FC = () => {
-  api
-    .service('goals')
-    .find({})
-    .then(console.log)
+    api
+        .service('goals')
+        .find({})
+        .then(console.log)
 
-  return (
-    <div>
-      <Head>
-        <title>Coachify Assessment</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    return (
+        <div>
+            <Head>
+                <title>Coachify Assessment</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-      <main>
-        <h1>Coachify</h1>
-
-        <Button title={'New Goal'} />
-      </main>
-    </div>
-  )
+            <main className={styles['app-frame']}>
+                <Introduction />
+                <GoalList />
+                <AddGoalButton />
+            </main>
+        </div>
+    )
 }
 
 export default Home

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import api from '../../api'
-import Button from '../../components/button'
+import Button from '../../components/Button'
 
 const Home: React.FC = () => {
     api
