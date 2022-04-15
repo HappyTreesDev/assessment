@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import api from "../api";
+import useGoals from "../hooks/useGoals";
 
 export default function GoalList() {
-    const listElements = <li>{1}</li>;
+    const goals = useGoals();
+    const goalItems = goals.map((goal: GoalType) => {
+        return (
+            <div key={goal.id}>{goal.title}</div>
+        );
+    });
+
     return (
         <ul>
-            {listElements}
+            {goalItems}
         </ul>
     )
 }

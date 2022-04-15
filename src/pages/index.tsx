@@ -1,17 +1,11 @@
 import Head from 'next/head'
 import React from 'react'
-import api from '../api'
-import AddGoalButton from '../components/AddGoalButton'
+import AddGoalButton from '../components/NewGoalButton'
 import GoalList from '../components/GoalList'
 import Introduction from '../components/Introduction'
 import styles from './index.module.css';
 
 const Home: React.FC = () => {
-    api
-        .service('goals')
-        .find({})
-        .then(console.log)
-
     return (
         <div>
             <Head>
@@ -22,7 +16,7 @@ const Home: React.FC = () => {
             <main className={styles['app-frame']}>
                 <Introduction />
                 <GoalList />
-                <AddGoalButton />
+                <NewGoalButton />
             </main>
         </div>
     )

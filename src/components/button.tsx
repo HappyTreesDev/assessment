@@ -3,17 +3,12 @@ import React from 'react';
 
 interface ButtonProps {
     title: string,
-    onPressed?: () => void,
+    onPressed: () => void,
 }
 
 export default function Button({ title, onPressed }: ButtonProps) {
-    const router = useRouter();
-    const handleClick = () => {
-        router.push('/create-goal')
-    }
-
     return (
-        <button onClick={onPressed ?? handleClick}>
+        <button onClick={onPressed}>
             {title}
         </button>
     );
