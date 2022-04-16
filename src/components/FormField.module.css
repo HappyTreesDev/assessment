@@ -1,0 +1,13 @@
+.formField {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.fieldName {
+    font-size: medium;
+}
+
+.field {
+    flex: 1;
+}
