@@ -1,14 +1,18 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React, { ReactElement, useState } from 'react'
 import Button from '../../components/Button'
 import GoalStateField from '../../components/GoalStateField'
 import Instructions from '../../components/Instructions'
 import Title from '../../components/Title'
 import TitleField from '../../components/TitleField'
+import GoalsInterface from '../../interface/GoalsInterface'
+import { GoalState } from '../../models/goal.model'
 
 export default function NewGoal(): ReactElement {
     const [goalTitle, setGoalTitle] = useState('');
     const [goalState, setGoalState] = useState(GoalState.created);
+    const router = useRouter();
 
     function handleGoalTitleChange(newValue: string) {
         setGoalTitle(newValue);
@@ -16,6 +20,11 @@ export default function NewGoal(): ReactElement {
 
     function handleGoalStateChange(newValue: GoalState) {
         setGoalState(newValue);
+    }
+
+    function handleCreatePressed() {
+        GoalsInterface.createGoal({ title: goalTitle, state: goalState, notes: [] });
+        router.back();
     }
 
     return (
@@ -30,9 +39,7 @@ export default function NewGoal(): ReactElement {
                 <Instructions>Create your new goal that you wish to accomplish</Instructions>
                 <TitleField value={goalTitle} onChange={handleGoalTitleChange} />
                 <GoalStateField value={goalState} onChange={handleGoalStateChange} />
-                <Button title={''} onPressed={function (): void {
-                    throw new Error('Function not implemented.')
-                }} />
+                <Button title={'Create'} onPressed={handleCreatePressed} />
             </main>
         </div>
     )
