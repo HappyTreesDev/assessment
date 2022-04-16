@@ -1,0 +1,24 @@
+.goalRow {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.goalTitle {
+    flex: 1;
+}
+
+.goalState {
+    flex: 1;
+}
+
+.goalStateCreated {
+    background-color: yellow;
+}
+
+.goalStateInProgress {
+    background-color: greenyellow;
+}
+
+.goalStateComplete {
+    background-color: aqua;
+}

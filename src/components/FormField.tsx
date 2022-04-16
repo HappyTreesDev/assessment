@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import * as StyleSheet from './FormField.module.css';
+import styles from './FormField.module.css';
 
 interface Props {
     fieldName: string,
@@ -7,11 +7,11 @@ interface Props {
 }
 export default function FormField({ fieldName, children }: Props): ReactElement {
     return (
-        <div className={StyleSheet.formField}>
-            <div className={StyleSheet.fieldName}>
+        <div className={styles.formField}>
+            <div className={styles.fieldName}>
                 {fieldName}
             </div>
-            <div className={StyleSheet.field}>
+            <div className={styles.field}>
                 {children}
             </div>
         </div>
