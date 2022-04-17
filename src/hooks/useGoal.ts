@@ -6,11 +6,10 @@ export default function useGoal(id: number): GoalType | undefined {
     const [goal, setGoal] = useState<GoalType | undefined>();
 
     useMemo(() => {
-        api.service('goals').find(() => {
-            id === id
-        }).then((foundGoal: GoalType[]) => {
-            setGoal(foundGoal[0]);
-        });
+        api.service('goals').get(id)
+            .then((foundGoal: GoalType[]) => {
+                setGoal(foundGoal[0]);
+            });
     }, []);
 
     return goal;

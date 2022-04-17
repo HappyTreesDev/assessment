@@ -2,7 +2,7 @@ export default interface GoalType {
     id?: number;
     title: string;
     state: GoalState;
-    notes: NoteModel[];
+    notes: number[];
     lastUpdated?: Date;
 }
 
