@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useGoals from "../hooks/useGoals";
 import GoalType from "../models/goal.model";
 import GoalListRow from "./GoalListRow";

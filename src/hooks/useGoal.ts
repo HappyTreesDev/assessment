@@ -8,8 +8,8 @@ export default function useGoal(id: number): GoalType | undefined {
     useMemo(() => {
         api.service('goals').find(() => {
             id === id
-        }).then((foundGoal: GoalType) => {
-            setGoal(foundGoal);
+        }).then((foundGoal: GoalType[]) => {
+            setGoal(foundGoal[0]);
         });
     }, []);
 
