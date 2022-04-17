@@ -8,12 +8,12 @@ class GoalsInterface {
         return this._goalsService.create(goal);
     }
 
-    static updateGoal() {
-        // TODO
+    static updateGoal(goal: GoalType) {
+        this._goalsService.update(goal.id, goal);
     }
 
-    static deleteGoal() {
-        // TODO
+    static deleteGoal(goalId: number) {
+        this._goalsService.remove(goalId);
     }
 
     static addNote() {

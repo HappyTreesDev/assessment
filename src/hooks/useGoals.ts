@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import api from "../api";
+import GoalType from "../models/goal.model";
 
 export default function useGoals(): GoalType[] {
     const [goals, setGoals] = useState<GoalType[]>([]);
