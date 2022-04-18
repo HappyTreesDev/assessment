@@ -10,7 +10,7 @@ import GoalType, { GoalState } from "../../../models/goal.model";
 
 export default function Edit(): ReactElement {
     const router = useRouter();
-    const goal = useGoal(parseInt(router.query.id as string));
+    const [goal, notes] = useGoal(parseInt(router.query.id as string));
     const [title, setTitle] = useState('');
     const [state, setState] = useState(GoalState.created);
 
@@ -30,7 +30,7 @@ export default function Edit(): ReactElement {
     }
 
     function handleDeletePressed() {
-        if (goal !== null && goal!.id !== null) {
+        if (goal != null && goal!.id != null) {
             GoalsInterface.deleteGoal(goal!.id!);
         }
         router.back();

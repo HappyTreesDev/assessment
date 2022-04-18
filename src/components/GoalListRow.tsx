@@ -23,8 +23,8 @@ export default function GoalListRow({ goal }: Props): ReactElement {
             <div className={goalStateStyle + ' ' + styles.goalState}>
                 {goal.state}
             </div>
-            <Button title={'Edit'} onPressed={() => {
-                router.push(`/goal/${goal.id}/edit`);
+            <Button title={'View Goal'} onPressed={() => {
+                router.push(`/goal/${goal.id}`);
             }} />
         </div>
     );

@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
             <main className={styles['app-frame']}>
                 <Introduction />
-                <Button title={'New Goal'} onPressed={() => router.push('/goal/new')} />
+                <Button title="New Goal" onPressed={() => router.push('/goal/new')} />
                 <GoalList />
             </main>
         </div>
