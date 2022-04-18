@@ -1,7 +1,5 @@
-import { useMemo, useState } from "react";
-import { setFlagsFromString } from "v8";
+import { useEffect, useMemo, useState } from "react";
 import api from "../api";
-import apiHooks from "../api.hooks";
 import GoalsInterface from "../interface/GoalsInterface";
 import GoalType from "../models/goal.model";
 import { NoteType } from "../models/note.model";
@@ -27,18 +25,29 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
             });
     }, [id]);
 
-    useMemo(() => {
+    useEffect(() => {
         function handler(newNote: NoteType) {
-            notes.push(newNote);
-            setNotes(notes);
+            const newNotes = [
+                ...notes,
+                newNote,
+            ];
+            const newGoal = {
+                ...goal!,
+                notes: [
+                    ...goal?.notes ?? [],
+                    newNote.id!,
+                ],
+            };
+            setNotes(newNotes);
+            setGoal(newGoal);
         };
 
-        api.service('notes').on('create', handler);
+        api.service('notes').on('created', handler);
 
         return () => {
             api.service('notes').removeListener('create', handler);
         }
-    }, [id]);
+    });
 
     return [goal, notes];
 }
