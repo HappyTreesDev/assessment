@@ -3,7 +3,7 @@ export default interface GoalType {
     title: string;
     state: GoalState;
     notes: number[];
-    lastUpdated?: Date;
+    created?: Date;
 }
 
 export enum GoalState {
