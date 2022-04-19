@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerData {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+}
+
+.goalTitle {
+    padding: 0px 16px;
+    font-size: 24px;
+}
+
+.goalState {
+    padding: 0px 16px;
+}
+
+.notesListTitle {
+    padding: 0px 16px;
+}
+
+.notesList {
+    padding: 0px 16px;
+    list-style-type: none;
+}
+
+.newTextArea {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: center;
+}
+
+.textArea {
+    flex: 1;
+    padding: 4px;
+    margin: 16px;
+}

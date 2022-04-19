@@ -33,7 +33,7 @@ export default function Edit(): ReactElement {
         if (goal != null && goal!.id != null) {
             GoalsInterface.deleteGoal(goal!.id!);
         }
-        router.back();
+        window.history.go(-2);
     }
 
     function handleSavePressed() {
