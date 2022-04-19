@@ -30,6 +30,10 @@ class GoalsInterface {
         return await this._notesService.get(noteId);
     }
 
+    static async getNotes(noteIds: number[]): Promise<NoteType[]> {
+        return await this._notesService.find((note: NoteType) => noteIds.includes(note.id ?? -1));
+    }
+
     static async addNote(goalId: number, noteValue?: string): Promise<GoalType> {
         const note = {
             goalId: goalId,
@@ -45,7 +49,7 @@ class GoalsInterface {
         return this._notesService.update(note.id, note);
     }
 
-    static async removeNote(noteId: number): Promise<void> {
+    static async deleteNote(noteId: number): Promise<void> {
         const note = await this.getNote(noteId);
         const goal = await this.getGoal(note.goalId);
         goal.notes.splice(goal.notes.indexOf(noteId), 1);

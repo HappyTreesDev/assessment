@@ -1,19 +1,24 @@
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import React, { ChangeEvent, ReactElement, useState } from "react";
 import Button from "../../../components/Button";
 import EditableNote from "../../../components/EditableNote";
-import Title from "../../../components/Title";
 import useGoal from "../../../hooks/useGoal";
 import GoalsInterface from "../../../interface/GoalsInterface";
 
 export default function ViewGoal(): ReactElement {
     const router = useRouter();
     const [goal, notes] = useGoal(parseInt(router.query.id as string));
+    const [newNote, setNewNote] = useState('');
 
     function handleAddNotePressed() {
         if (goal != null && goal.id != null) {
-            GoalsInterface.addNote(goal.id!);
+            GoalsInterface.addNote(goal.id!, newNote);
+            setNewNote('');
         }
+    }
+
+    function handleNewNoteChanged(event: ChangeEvent<HTMLTextAreaElement>) {
+        setNewNote(event.target.value);
     }
 
     return (
@@ -21,6 +26,7 @@ export default function ViewGoal(): ReactElement {
             <div className="goalTitle">{goal?.title}</div>
             <div className="goalState">{goal?.state}</div>
             <Button title="Edit Goal" onPressed={() => router.push(`${goal?.id}/edit`)} />
+            <Button title="Back" onPressed={() => router.back()} />
             <hr />
             <div className="notesTitle">Notes:</div>
             <ul className="notesList">
@@ -34,6 +40,7 @@ export default function ViewGoal(): ReactElement {
                     })
                 }
             </ul>
+            <textarea value={newNote} onChange={handleNewNoteChanged} />
             <Button title="Add Note" onPressed={handleAddNotePressed} />
         </div>
     );

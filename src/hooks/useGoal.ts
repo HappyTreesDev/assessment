@@ -8,25 +8,18 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
     const [goal, setGoal] = useState<GoalType | undefined>();
     const [notes, setNotes] = useState<NoteType[]>([]);
 
-    async function getNote(noteId: number): Promise<NoteType> {
-        return await GoalsInterface.getNote(noteId);
-    }
-
     useMemo(() => {
         GoalsInterface.getGoal(id)
             .then((foundGoal: GoalType) => {
                 setGoal(foundGoal);
-                foundGoal.notes.forEach((noteId) => {
-                    getNote(noteId).then((note) => {
-                        notes.push(note);
-                        setNotes(notes);
-                    });
+                GoalsInterface.getNotes(foundGoal.notes).then((newNotes) => {
+                    setNotes(newNotes);
                 });
             });
     }, [id]);
 
     useEffect(() => {
-        function handler(newNote: NoteType) {
+        function createHandler(newNote: NoteType) {
             const newNotes = [
                 ...notes,
                 newNote,
@@ -42,10 +35,38 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
             setGoal(newGoal);
         };
 
-        api.service('notes').on('created', handler);
+        function deleteHandler(removed: NoteType) {
+            const newNotes =
+                notes.filter((note: NoteType) => note.id !== removed.id);
+            const newGoal = {
+                ...goal!,
+                notes: [
+                    ...newNotes.map((note: NoteType) => note.id!),
+                ],
+            };
+            setNotes(newNotes);
+            setGoal(newGoal);
+        };
+
+        function updateHandler(updatedNote: NoteType) {
+            const index = notes.findIndex((note: NoteType) => note.id === updatedNote.id);
+            const newNotes = [
+                ...notes,
+            ]
+            newNotes[index] = updatedNote;
+            setNotes(newNotes);
+        };
+
+        api.service('notes').on('created', createHandler);
+        api.service('notes').on('removed', deleteHandler);
+        api.service('notes').on('updated', updateHandler);
+        api.service('notes').on('patched', updateHandler);
 
         return () => {
-            api.service('notes').removeListener('create', handler);
+            api.service('notes').removeListener('create', createHandler);
+            api.service('notes').removeListener('removed', deleteHandler);
+            api.service('notes').removeListener('updated', updateHandler);
+            api.service('notes').removeListener('patched', updateHandler);
         }
     });
 
