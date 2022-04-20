@@ -82,7 +82,7 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
             api.service('notes').removeListener('updated', updateHandler);
             api.service('notes').removeListener('patched', updateHandler);
         }
-    });
+    }, [id, notes.length]);
 
     return [goal, notes];
 }

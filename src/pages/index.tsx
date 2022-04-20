@@ -3,7 +3,7 @@ import React from 'react'
 import GoalList from '../components/GoalList'
 import Introduction from '../components/Introduction'
 import StyleSheet from './index.module.css';
-import NewGoalButton from '../components/NewGoalButton';
+import NewGoalForm from '../components/NewGoalForm';
 
 const Home: React.FC = () => {
     return (
@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
             <main className={StyleSheet.appFrame}>
                 <Introduction />
-                <NewGoalButton />
+                <NewGoalForm />
                 <GoalList />
             </main>
         </div>

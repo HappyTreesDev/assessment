@@ -1,0 +1,11 @@
+.newGoalForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dataFields {
+    display: flex;
+    flex-direction: column;
+}

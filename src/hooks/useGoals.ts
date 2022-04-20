@@ -48,6 +48,6 @@ export default function useGoals(): GoalType[] {
             api.service('goals').removeListener('updated', updateHandler);
             api.service('goals').removeListener('patched', updateHandler);
         }
-    });
+    }, [goals.length]);
     return goals;
 }

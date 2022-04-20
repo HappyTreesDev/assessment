@@ -20,6 +20,7 @@ class GoalsInterface {
 
     static async deleteGoal(goalId: number): Promise<void> {
         const goal = await this.getGoal(goalId);
+        goal.notes = goal.notes ?? [];
         goal.notes.forEach(async (noteId) => {
             await this._notesService.remove(noteId);
         });
@@ -31,13 +32,15 @@ class GoalsInterface {
     }
 
     static async getNotes(noteIds: number[]): Promise<NoteType[]> {
-        return await this._notesService.find({
+        const query = {
             query: {
                 id: {
                     $in: noteIds
                 }
             }
-        });
+        };
+
+        return await this._notesService.find(query);
     }
 
     static async addNote(goalId: number, noteValue?: string): Promise<GoalType> {
@@ -47,6 +50,7 @@ class GoalsInterface {
         };
         const noteAddedEvent = await this._notesService.create(note);
         const goal = await this.getGoal(goalId);
+        goal.notes = goal.notes ?? [];
         goal.notes.push(noteAddedEvent.id);
         return this._goalsService.update(goalId, goal);
     }
@@ -58,7 +62,9 @@ class GoalsInterface {
     static async deleteNote(noteId: number): Promise<void> {
         const note = await this.getNote(noteId);
         const goal = await this.getGoal(note.goalId);
-        goal.notes.splice(goal.notes.indexOf(noteId), 1);
+        if (goal.notes) {
+            goal.notes.splice(goal.notes.indexOf(noteId), 1);
+        }
         await this.updateGoal(goal);
         return this._notesService.remove(noteId);
     }

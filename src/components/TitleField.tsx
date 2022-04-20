@@ -12,7 +12,7 @@ export default function TitleField({ value, onChange }: Props): ReactElement {
     }
 
     return (
-        <FormField fieldName={'Goal Title'}>
+        <FormField fieldName={'Goal Title: '}>
             <input
                 type="text"
                 value={value}

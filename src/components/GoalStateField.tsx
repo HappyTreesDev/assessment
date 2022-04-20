@@ -14,7 +14,7 @@ export default function GoalStateField({ value, onChange }: Props): ReactElement
     }
 
     return (
-        <FormField fieldName={'Goal State'}>
+        <FormField fieldName={'Goal State: '}>
             <div className={StyleSheet.stateSelectors}>
                 <div className={StyleSheet.stateSelector}>
                     <div>Created:</div>
