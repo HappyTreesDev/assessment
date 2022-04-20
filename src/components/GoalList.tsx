@@ -16,10 +16,10 @@ export default function GoalList() {
         .filter((goal) => filter.includes(goal.state))
         .map((goal: GoalType) => {
             return (
-                <>
+                <div key={goal.id}>
                     <GoalListRow goalId={goal.id ?? -1} />
                     <hr className={StyleSheet.lightDivider} />
-                </>
+                </div>
             );
         });
 

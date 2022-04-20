@@ -1,0 +1,10 @@
+.stateSelectors {
+    display: flex;
+    flex-flow: row;
+}
+
+.stateSelector {
+    display: flex;
+    flex-flow: row;
+    padding: 0px 8px;
+}

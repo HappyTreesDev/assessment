@@ -19,6 +19,12 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
     }, [id]);
 
     useEffect(() => {
+        function updateGoalHandler(newGoal: GoalType) {
+            if (newGoal.id === id) {
+                setGoal(newGoal);
+            }
+        }
+
         function createHandler(newNote: NoteType) {
             if (newNote.goalId === id) {
                 const newNotes = [
@@ -63,12 +69,14 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
             }
         };
 
+        api.service('goals').on('updated', updateGoalHandler);
         api.service('notes').on('created', createHandler);
         api.service('notes').on('removed', deleteHandler);
         api.service('notes').on('updated', updateHandler);
         api.service('notes').on('patched', updateHandler);
 
         return () => {
+            api.service('goals').removeListener('updated', updateGoalHandler);
             api.service('notes').removeListener('create', createHandler);
             api.service('notes').removeListener('removed', deleteHandler);
             api.service('notes').removeListener('updated', updateHandler);
