@@ -31,7 +31,13 @@ class GoalsInterface {
     }
 
     static async getNotes(noteIds: number[]): Promise<NoteType[]> {
-        return await this._notesService.find((note: NoteType) => noteIds.includes(note.id ?? -1));
+        return await this._notesService.find({
+            query: {
+                id: {
+                    $in: noteIds
+                }
+            }
+        });
     }
 
     static async addNote(goalId: number, noteValue?: string): Promise<GoalType> {
@@ -40,9 +46,9 @@ class GoalsInterface {
             value: noteValue ?? '',
         };
         const noteAddedEvent = await this._notesService.create(note);
-        const goal = await this.getGoal(note.goalId);
+        const goal = await this.getGoal(goalId);
         goal.notes.push(noteAddedEvent.id);
-        return this._goalsService.update(goal.id, goal);
+        return this._goalsService.update(goalId, goal);
     }
 
     static async updateNote(note: NoteType): Promise<NoteType> {

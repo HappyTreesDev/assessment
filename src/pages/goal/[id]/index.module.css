@@ -14,10 +14,23 @@
 .goalTitle {
     padding: 0px 16px;
     font-size: 24px;
+    margin-bottom: 8px;
 }
 
 .goalState {
     padding: 0px 16px;
+}
+
+.goalStateCreated {
+    background-color: lightcyan;
+}
+
+.goalStateInProgress {
+    background-color: lightyellow;
+}
+
+.goalStateCompleted {
+    background-color: lightgreen;
 }
 
 .notesListTitle {

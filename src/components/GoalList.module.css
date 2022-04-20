@@ -1,3 +1,23 @@
-.goal-list {
-    padding: 16,
+.filterSection {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+}
+
+.filtersTitle {
+    padding-right: 8px;
+    background-color: lightgray;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 8px;
+}
+
+.lightDivider {
+    border-top: 1px solid lightgrey;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
 }

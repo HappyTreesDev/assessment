@@ -20,41 +20,47 @@ export default function useGoal(id: number): [goal: GoalType | undefined, notes:
 
     useEffect(() => {
         function createHandler(newNote: NoteType) {
-            const newNotes = [
-                ...notes,
-                newNote,
-            ];
-            const newGoal = {
-                ...goal!,
-                notes: [
-                    ...goal?.notes ?? [],
-                    newNote.id!,
-                ],
-            };
-            setNotes(newNotes);
-            setGoal(newGoal);
+            if (newNote.goalId === id) {
+                const newNotes = [
+                    ...notes,
+                    newNote,
+                ];
+                const newGoal = {
+                    ...goal!,
+                    notes: [
+                        ...goal?.notes ?? [],
+                        newNote.id!,
+                    ],
+                };
+                setNotes(newNotes);
+                setGoal(newGoal);
+            }
         };
 
         function deleteHandler(removed: NoteType) {
-            const newNotes =
-                notes.filter((note: NoteType) => note.id !== removed.id);
-            const newGoal = {
-                ...goal!,
-                notes: [
-                    ...newNotes.map((note: NoteType) => note.id!),
-                ],
-            };
-            setNotes(newNotes);
-            setGoal(newGoal);
+            if (removed.goalId === id) {
+                const newNotes =
+                    notes.filter((note: NoteType) => note.id !== removed.id);
+                const newGoal = {
+                    ...goal!,
+                    notes: [
+                        ...newNotes.map((note: NoteType) => note.id!),
+                    ],
+                };
+                setNotes(newNotes);
+                setGoal(newGoal);
+            }
         };
 
         function updateHandler(updatedNote: NoteType) {
-            const index = notes.findIndex((note: NoteType) => note.id === updatedNote.id);
-            const newNotes = [
-                ...notes,
-            ]
-            newNotes[index] = updatedNote;
-            setNotes(newNotes);
+            if (updatedNote.goalId === id) {
+                const index = notes.findIndex((note: NoteType) => note.id === updatedNote.id);
+                const newNotes = [
+                    ...notes,
+                ]
+                newNotes[index] = updatedNote;
+                setNotes(newNotes);
+            }
         };
 
         api.service('notes').on('created', createHandler);

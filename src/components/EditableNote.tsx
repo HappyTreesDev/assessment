@@ -2,15 +2,17 @@ import React, { ChangeEvent, HTMLInputTypeAttribute, ReactElement, useState } fr
 import GoalsInterface from "../interface/GoalsInterface";
 import { NoteType } from "../models/note.model";
 import Button from "./Button";
+import StyleSheet from './EditableNote.module.css';
 
 interface Props {
     note: NoteType;
-    isEditMode?: boolean;
+    canEdit?: boolean;
 }
 
-export default function EditableNote({ note, isEditMode = false }: Props): ReactElement {
-    const [editMode, setEditMode] = useState(isEditMode);
+export default function EditableNote({ note, canEdit = true }: Props): ReactElement {
+    const [editMode, setEditMode] = useState(false);
     const [noteText, setNoteText] = useState(note.value);
+    const lastUpdatedDate = note.lastUpdated ? new Date(note.lastUpdated) : new Date();
 
     function toggleEditMode() {
         if (editMode) {
@@ -27,19 +29,31 @@ export default function EditableNote({ note, isEditMode = false }: Props): React
     }
 
     return (
-        <div>
+        <div className={StyleSheet.editableNote}>
             {editMode ?
-                <textarea value={noteText} onChange={handleNoteChange} />
-                : <p>{note.value}</p>
+                <textarea
+                    className={StyleSheet.editableNote}
+                    value={noteText}
+                    onChange={handleNoteChange}
+                />
+                :
+                <p className={StyleSheet.note}>
+                    {note.value}
+                </p>
+
             }
-            <div className="optionsRow">
-                <div>{note.lastUpdated}</div>
-                <Button title="Delete Note" onPressed={() => {
-                    if (note.id != null) {
-                        GoalsInterface.deleteNote(note.id);
-                    }
-                }} />
-                <Button title={editMode ? "Save" : "Edit Note"} onPressed={toggleEditMode} />
+            <div className={StyleSheet.optionsRow}>
+                <div className={StyleSheet.lastUpdated}>{`Last Updated: ${lastUpdatedDate.toLocaleDateString()}`}</div>
+                {canEdit &&
+                    <>
+                        <Button title="Delete Note" onPressed={() => {
+                            if (note.id != null) {
+                                GoalsInterface.deleteNote(note.id);
+                            }
+                        }} />
+                        <Button title={editMode ? "Save" : "Edit Note"} onPressed={toggleEditMode} />
+                    </>
+                }
             </div>
         </div>
     );

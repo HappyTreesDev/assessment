@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./Instructions.module.css";
+import StyleSheet from "./Instructions.module.css";
 
 interface Props {
     children?: string | ReactElement;
@@ -7,7 +7,7 @@ interface Props {
 
 export default function Instructions({ children }: Props) {
     return (
-        <div className={styles.instructions}>
+        <div className={StyleSheet.instructions}>
             {children}
         </div>
     )

@@ -1,5 +1,5 @@
-import React from 'react';
-import * as StyleSheet from './Button.module.css';
+import React, { ButtonHTMLAttributes, ReactElement } from 'react';
+import StyleSheet from './Button.module.css';
 
 interface ButtonProps {
     title: string;
@@ -7,9 +7,13 @@ interface ButtonProps {
     primary?: boolean;
 }
 
-export default function Button({ title, onPressed, primary = false }: ButtonProps) {
+export default function Button({ title, onPressed, primary = false, ...props }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
     return (
-        <button className={primary ? StyleSheet.primary : ''} onClick={onPressed}>
+        <button
+            className={primary ? StyleSheet.primary : ''}
+            onClick={onPressed}
+            {...props}
+        >
             {title}
         </button>
     );

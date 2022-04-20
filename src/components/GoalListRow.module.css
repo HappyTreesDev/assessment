@@ -1,6 +1,12 @@
+.goal {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 .goalRow {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 }
 
 .goalTitle {
@@ -12,13 +18,25 @@
 }
 
 .goalStateCreated {
-    background-color: yellow;
+    background-color: lightyellow;
 }
 
 .goalStateInProgress {
-    background-color: greenyellow;
+    background-color: lightgreen;
 }
 
 .goalStateComplete {
-    background-color: aqua;
+    background-color: lightcyan;
+}
+
+.notesExpanderContainer {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.notesExpander {
+    width: 90%;
+    padding: 2px 2px;
 }

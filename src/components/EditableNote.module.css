@@ -1,0 +1,27 @@
+.editableNote {
+    border: solid 2px lightgray;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    padding: 0px 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editableNote {
+    margin-top: 8px;
+}
+
+.note {
+    background-color: #f1f1f1;
+}
+
+.optionsRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lastUpdated {
+    flex: 1;
+    font-style: italic;
+}

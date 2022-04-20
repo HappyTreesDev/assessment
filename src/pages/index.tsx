@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 import GoalList from '../components/GoalList'
 import Introduction from '../components/Introduction'
-import styles from './index.module.css';
+import StyleSheet from './index.module.css';
 import { useRouter } from 'next/router'
 import Button from '../components/Button';
 
@@ -15,7 +15,7 @@ const Home: React.FC = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles['app-frame']}>
+            <main className={StyleSheet.appFrame}>
                 <Introduction />
                 <Button title="New Goal" onPressed={() => router.push('/goal/new')} />
                 <GoalList />
