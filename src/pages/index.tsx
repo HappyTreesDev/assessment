@@ -3,11 +3,9 @@ import React from 'react'
 import GoalList from '../components/GoalList'
 import Introduction from '../components/Introduction'
 import StyleSheet from './index.module.css';
-import { useRouter } from 'next/router'
-import Button from '../components/Button';
+import NewGoalButton from '../components/NewGoalButton';
 
 const Home: React.FC = () => {
-    const router = useRouter();
     return (
         <div>
             <Head>
@@ -17,7 +15,7 @@ const Home: React.FC = () => {
 
             <main className={StyleSheet.appFrame}>
                 <Introduction />
-                <Button title="New Goal" onPressed={() => router.push('/goal/new')} />
+                <NewGoalButton />
                 <GoalList />
             </main>
         </div>
